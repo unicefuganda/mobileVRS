@@ -162,6 +162,7 @@ LOGGING = {
     }
 }
 
+INITIAL_USSD_SCREEN='ussd_root'
 import os
 import tempfile
 import sys
