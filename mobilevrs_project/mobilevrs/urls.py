@@ -8,7 +8,7 @@ from mobilevrs.views import *
 
 urlpatterns = patterns('',
     # Examples:
-    url(r'^ussd/$', include('mobilevrs.urls')),
+    url(r'$', ussd_menu),
 
     # Uncomment the admin/doc line below to enable admin documentation:
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),

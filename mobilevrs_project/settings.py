@@ -136,7 +136,9 @@ INSTALLED_APPS = (
     'uganda_common',
     'script',
     'poll',
-    'generic'
+    'generic',
+    'rapidsms_httprouter',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging
