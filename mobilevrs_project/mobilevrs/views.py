@@ -64,6 +64,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
             'response_content':urllib.quote(str(response_screen)),
             'action':action,
             }, context_instance=RequestContext(req))
+    return HttpResponse(str(form.errors))
 
     return HttpResponse(status=404)
 
