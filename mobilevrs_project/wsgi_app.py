@@ -13,4 +13,14 @@ print sys.path
 
 from django.core.handlers.wsgi import WSGIHandler
 
-application = WSGIHandler()
+import django.core.handlers.wsgi
+class ForcePostHandler(WSGIHandler):
+    """Workaround for: http://lists.unbit.it/pipermail/uwsgi/2011-February/001395.html
+    """
+    def get_response(self, request):
+        request.POST # force reading of POST data
+        return super(ForcePostHandler, self).get_response(request)
+
+application = ForcePostHandler()
+
+#application = WSGIHandler()
