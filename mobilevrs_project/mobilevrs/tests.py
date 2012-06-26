@@ -25,3 +25,4 @@ class ViewTest(TestCase):
                                     'response':self.response
                                     })
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.content, 'responseString=1.%20Notify%20Birth%0A2.%20Notify%20Death%0A3.%20Edit%20Record%0A4.%20User%20Management&action=request')
