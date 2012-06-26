@@ -1,6 +1,7 @@
 from django.conf.urls.defaults import patterns, include, url
 from ussd.urls import urlpatterns as ussd_urls
-from mobilevrs.views import *
+from mobilevrs.views import ussd_menu
+#from django.views.generic.simple import direct_to_template
 
 # Uncomment the next two lines to enable the admin:
 #from django.contrib import admin
@@ -8,6 +9,7 @@ from mobilevrs.views import *
 
 urlpatterns = patterns('',
     # Examples:
+#    url(r'^$', direct_to_template, {'template':'ussd/yo.txt'}, name='rapidsms-dashboard'),
     url(r"^ussd/$", ussd_menu,name="ussd_menu"),
 
     # Uncomment the admin/doc line below to enable admin documentation:
