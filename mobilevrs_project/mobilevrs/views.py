@@ -6,7 +6,8 @@ from django.template import RequestContext
 import urllib
 from ussd.models import *
 from django.conf import settings
-
+from .tasks import submitt_to_utl
+from .models import *
 def advance_progress(session,input):
     '''
         Navigate down the tree, based on the number the user has input.
@@ -57,14 +58,33 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
     if form and form.is_valid():
         session = form.cleaned_data['transactionId']
         request_string = form.cleaned_data['ussdRequestString']
-        response_screen = advance_progress(session,request_string)
 
+        if req.session.get('ses_str',None) and req.session['ses_str'].get('birth_summ',None):
+            if session.transaction_id == req.session['ses_str']['session'].transaction_id:
+                if request_string=="0":
+                    response="The information was not recorded. Please start again."
+                else:
+                    #submitt_to_utl.delay(session)
+                    response="Thank you for recording a new birth! You will  receive a confirmation message with the summary of the record and the registration number. "
+                return render_to_response(output_template, {
+                    'response_content':urllib.quote(str(response)),
+                    'action':'end',
+                    }, context_instance=RequestContext(req))
+        #import pdb;pdb.set_trace()
+        response_screen = advance_progress(session,request_string)
         action = 'end' if response_screen.is_terminal() else 'request'
+        if str(response_screen) == "Enter Pin to comfirm or 0 to cancel":
+            response_screen="Birth Summary "+get_summary(session)+str(response_screen)
+            ses={'session':session,'birth_summ':True}
+            req.session['ses_str']=ses
+
+
+
         return render_to_response(output_template, {
             'response_content':urllib.quote(str(response_screen)),
             'action':action,
             }, context_instance=RequestContext(req))
-    
+
 
     return HttpResponse(status=404)
 
