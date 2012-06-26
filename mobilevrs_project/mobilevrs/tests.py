@@ -1,16 +1,27 @@
-"""
-This file demonstrates writing tests using the unittest module. These will pass
-when you run "manage.py test".
-
-Replace this with more appropriate tests for your application.
-"""
-
 from django.test import TestCase
+from django.test.client import Client
+from django.test.client import RequestFactory
+from django.core.urlresolvers import reverse
+import datetime
+import urllib
 
+class ViewTest(TestCase):
 
-class SimpleTest(TestCase):
-    def test_basic_addition(self):
-        """
-        Tests that 1 + 1 always equals 2.
-        """
-        self.assertEqual(1 + 1, 2)
+    def setUp(self):
+        self.transactionId = '123344'
+        self.transactionTime = datetime.datetime.now()
+        self.msisdn = '256772698723'
+        self.ussdServiceCode = '*130*10#'
+        self.ussdRequestString = ''
+        self.response = False
+        
+    def testUSSDRequest(self):
+        c = Client()
+        response = c.post('/ussd/', {'transactionId': self.transactionId,\
+                                    'transactionTime': self.transactionTime,\
+                                    'msisdn': self.msisdn,\
+                                    'ussdServiceCode': self.ussdServiceCode,\
+                                    'ussdRequestString': self.ussdRequestString,\
+                                    'response':self.response
+                                    })
+        self.assertEquals(response.status_code, 200)
