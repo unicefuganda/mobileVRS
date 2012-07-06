@@ -164,6 +164,16 @@ LOGGING = {
     }
 }
 
+
+#caching stuff
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.db.DatabaseCache',
+        'LOCATION': 'cache_table',
+        }
+}
+
+
 INITIAL_USSD_SCREEN='ussd_root'
 import os
 import tempfile

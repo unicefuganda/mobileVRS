@@ -8,6 +8,7 @@ from ussd.models import *
 from django.conf import settings
 from .tasks import submitt_to_utl
 from .models import *
+from django.core.cache import cache
 def advance_progress(session,input):
     '''
         Navigate down the tree, based on the number the user has input.
@@ -57,7 +58,16 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         form = input_form(req.POST)
     if form and form.is_valid():
         session = form.cleaned_data['transactionId']
+        if req.session.get('resume',None):
+            session=req.session['resume']
+
         request_string = form.cleaned_data['ussdRequestString']
+        #start caching for navigations>3
+        if session.navigations.count()>=3:
+            if not session.connection.identity in cache:
+                cache.set(session.connection.identity,session.pk,1800)
+
+
 
         if req.session.get('ses_str',None) and req.session['ses_str'].get('birth_summ',None):
             if session.transaction_id == req.session['ses_str']['session'].transaction_id:
@@ -73,10 +83,20 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         #import pdb;pdb.set_trace()
         response_screen = advance_progress(session,request_string)
         action = 'end' if response_screen.is_terminal() else 'request'
-        if str(response_screen) == "Enter Pin to comfirm or 0 to cancel":
-            response_screen="Birth Summary "+get_summary(session)+str(response_screen)
+        if str(response_screen) in ["Enter Pin to comfirm or 0 to cancel","Death Summary:"]:
+            response_screen="Summary "+get_summary(session)+str(response_screen)
             ses={'session':session,'birth_summ':True}
+            action="request"
             req.session['ses_str']=ses
+        if response_screen.label =="Resume Previous":
+            if session.connection.identity in cache:
+                prev_session=Session.objects.get(pk=cache.get(session.connection.identity))
+                response_screen=prev_session.navigations.latest('date').text
+                req.session['resume']=session
+            else:
+                response_screen="You Have No Resumable Sessions"
+
+
 
 
 
