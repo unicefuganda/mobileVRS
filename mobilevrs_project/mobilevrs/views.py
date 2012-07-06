@@ -72,13 +72,13 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
                 if request_string=="0":
                     response="The information was not recorded. Please start again."
                 else:
-                    #submitt_to_utl.delay(session)
+                    submitt_to_utl(session)
                     response="Thank you for recording a new birth! You will  receive a confirmation message with the summary of the record and the registration number. "
                 return render_to_response(output_template, {
                     'response_content':urllib.quote(str(response)),
                     'action':'end',
                     }, context_instance=RequestContext(req))
-    
+
         response_screen = advance_progress(session,request_string)
         action = 'end' if response_screen.is_terminal() else 'request'
         if str(response_screen) in ["Enter Pin to comfirm or 0 to cancel","Death Summary:"]:

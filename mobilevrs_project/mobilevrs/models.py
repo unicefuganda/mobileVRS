@@ -29,6 +29,68 @@ summary_dict={
 }
 
 
+
+
+
+
+
+UTL_BIRTH_DICT={
+"NFNAT":"father_nationality",
+"NMNAT":"mother_nationality",
+"NFAT":"father_name",
+"PIN":"PIN",
+"NMOT":"mother_name",
+"NSEX":"child_sex",
+"NDATE":"birth_date",
+"NLNAME":"other_name",
+"NNAME":"child_first_name",
+"MSISDN":"MSISDN",
+"ACTION":"ACTION",
+"SESSION":"SESSION",
+}
+
+
+
+
+UTL_DEATH_DICT={
+    'ACTION':'NEWDEATH',
+    'SESSION':'SESSION',
+    "MSISDN":"MSISDN",
+    'PIN':'PIN',
+    'DLNAME':'death_sex',
+    'DAGE':'death_age',
+    'DDNAME':'death_reporter',
+    'DDATE':'death_birth',
+    'DDFON':'death_reporter_phone',
+    'DDCAP':'death_reporter_capacity',
+    'DLNAME':'death_name',
+
+}
+def dictinvert(dict):
+    inv = {}
+    for k, v in dict.iteritems():
+        inv[v]=k
+    return inv
+
+
+
+def get_summary_dict(session,dictto,action):
+    results=dictto
+    pin=''
+    keys=dictinvert(dictto)
+    for nav in session.navigations.all():
+        val=summary_dict.get(nav.screen.downcast().slug,None)
+        if val in ["death_summary","birth_summary"]:
+            pin=nav.screen.downcast().slug
+        if val:
+            results[keys.get(nav.screen.downcast().slug)]=nav.response
+    results['SESSION']=1123
+    results['MSISDN']=session.connection.identity
+    results['PIN']=pin
+    results['ACTION']=action
+    return results
+
+
 def get_summary(session):
     summary=""
     for nav in session.navigations.all():
