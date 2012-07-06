@@ -58,16 +58,14 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         form = input_form(req.POST)
     if form and form.is_valid():
         session = form.cleaned_data['transactionId']
-        if req.session.get('resume',None):
-            session=req.session['resume']
-
         request_string = form.cleaned_data['ussdRequestString']
         #start caching for navigations>3
         if session.navigations.count()>=3:
             if not session.connection.identity in cache:
-                cache.set(session.connection.identity,session.pk,1800)
-
-
+                sess={}
+                sess['pk']=session.pk
+                sess['transaction_id']=session.transaction_id
+                cache.set(session.connection.identity,sess,1800)
 
         if req.session.get('ses_str',None) and req.session['ses_str'].get('birth_summ',None):
             if session.transaction_id == req.session['ses_str']['session'].transaction_id:
@@ -80,7 +78,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
                     'response_content':urllib.quote(str(response)),
                     'action':'end',
                     }, context_instance=RequestContext(req))
-        #import pdb;pdb.set_trace()
+    
         response_screen = advance_progress(session,request_string)
         action = 'end' if response_screen.is_terminal() else 'request'
         if str(response_screen) in ["Enter Pin to comfirm or 0 to cancel","Death Summary:"]:
@@ -88,11 +86,15 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
             ses={'session':session,'birth_summ':True}
             action="request"
             req.session['ses_str']=ses
-        if response_screen.label =="Resume Previous" and not req.session.get('resume',None):
+        if response_screen.label =="Resume Previous" :
             if session.connection.identity in cache:
-                prev_session=Session.objects.get(pk=cache.get(session.connection.identity))
+                ses=cache.get(session.connection.identity)
+                prev_session=Session.objects.get(pk=ses.get('pk'))
                 response_screen=prev_session.navigations.latest('date').text
-                req.session['resume']=session
+                prev_session.transaction_id=session.transaction_id
+                prev_session.save()
+                session.delete()
+
             else:
                 response_screen="You Have No Resumable Sessions"
 
