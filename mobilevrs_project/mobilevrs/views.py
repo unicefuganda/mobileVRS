@@ -88,7 +88,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
             ses={'session':session,'birth_summ':True}
             action="request"
             req.session['ses_str']=ses
-        if response_screen.label =="Resume Previous" and not req.session.get('session',None):
+        if response_screen.label =="Resume Previous" and not req.session.get('resume',None):
             if session.connection.identity in cache:
                 prev_session=Session.objects.get(pk=cache.get(session.connection.identity))
                 response_screen=prev_session.navigations.latest('date').text
