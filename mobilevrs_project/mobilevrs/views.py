@@ -6,13 +6,15 @@ from django.template import RequestContext
 import urllib
 from ussd.models import *
 from django.conf import settings
-from .tasks import submitt_to_utl
-from .models import *
+from mobilevrs.tasks import forward_to_utl
+from mobilevrs.utils import get_summary
+from mobilevrs.models import *
 from django.core.cache import cache
 def advance_progress(session,input):
     '''
         Navigate down the tree, based on the number the user has input.
         '''
+#    import ipdb;ipdb.set_trace()
     if input.rsplit("_")[0] == getattr(settings,"BACK_KEY","#"):
         return StubScreen(text=session.back(), terminal=False)
     screen = session.last_screen()
@@ -67,26 +69,32 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
                 sess['transaction_id']=session.transaction_id
                 cache.set(session.connection.identity,sess,1800)
 
-        if req.session.get('ses_str',None) and req.session['ses_str'].get('birth_summ',None):
-            if session.transaction_id == req.session['ses_str']['session'].transaction_id:
-                if request_string=="0":
-                    response="The information was not recorded. Please start again."
-                else:
-                    submitt_to_utl(session)
-                    response="Thank you for recording a new birth! You will  receive a confirmation message with the summary of the record and the registration number. "
-                return render_to_response(output_template, {
-                    'response_content':urllib.quote(str(response)),
-                    'action':'end',
-                    }, context_instance=RequestContext(req))
+        if session.navigations.count():
+            if session.navigations.order_by('-date')[0].screen.downcast().is_terminal():
+                #forward the responses in the session to utl
+                response = forward_to_utl(session)
+                
+                if not response.status_code == 200:
+                    #if the submission into utl does not return success?
+                    resp = "The information was not saved. Please start again"
+                    return render_to_response(output_template, {
+                        'response_content':urllib.quote(str(resp)),
+                        'action':'end',
+                        }, context_instance=RequestContext(req))
 
+        #submit input and advance to the next screen
         response_screen = advance_progress(session,request_string)
+        
+        #is this a terminal screen or not?
         action = 'end' if response_screen.is_terminal() else 'request'
+        
+        #Pre-pend a summary to the second last question
         if str(response_screen) in ["Enter Pin to comfirm or 0 to cancel","Death Summary:"]:
-            response_screen="Summary "+get_summary(session)+str(response_screen)
-            ses={'session':session,'birth_summ':True}
-            action="request"
-            req.session['ses_str']=ses
-        if response_screen.label =="Resume Previous" :
+            response_screen="Summary %s %s " % (get_summary(session), str(response_screen))
+        
+        #Determine if a resume option has been selected and serve the last dropped session    
+        label = response_screen if type(response_screen) == unicode else response_screen.label 
+        if label == "Resume Previous" :
             if session.connection.identity in cache:
                 ses=cache.get(session.connection.identity)
                 prev_session=Session.objects.get(pk=ses.get('pk'))
@@ -94,13 +102,12 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
                 prev_session.transaction_id=session.transaction_id
                 prev_session.save()
                 session.delete()
-
             else:
                 response_screen="You Have No Resumable Sessions"
-
-
-
-
+                
+        #TODO: handle edit function
+        #TODO: handle user management
+        #TODO: handle skips
 
         return render_to_response(output_template, {
             'response_content':urllib.quote(str(response_screen)),
