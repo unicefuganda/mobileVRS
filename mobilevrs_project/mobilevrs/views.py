@@ -62,13 +62,13 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         session = form.cleaned_data['transactionId']
         request_string = form.cleaned_data['ussdRequestString']
         #start caching for navigations>3
-        if session.navigations.count()>=3:
+        if session.navigations.count()>=2:
             if not session.connection.identity in cache:
                 sess={}
                 sess['pk']=session.pk
                 sess['transaction_id']=session.transaction_id
                 cache.set(session.connection.identity, sess, 1800)
-
+                
         #submit input and advance to the next screen
         response_screen = advance_progress(session, request_string)
         

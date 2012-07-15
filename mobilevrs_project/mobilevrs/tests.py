@@ -122,9 +122,15 @@ class ViewTest(TestCase):
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Thank you for recording a new birth! You will  receive a confirmation message with the summary of the record and the registration number&action=end')
         
     def testDeathNotify(self):
-        response = self.sendRequest()
+        response = self.sendRequest(transactionId = '123345',\
+                                    transactionTime = self.transactionTime, \
+                                    msisdn = self.msisdn, \
+                                    ussdServiceCode = self.msisdn, \
+                                    ussdRequestString = '', \
+                                    response = True\
+                                    )
         self.assertEquals(response.status_code, 200)
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -132,7 +138,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), "responseString=Enter names of the Deceased:&action=request")
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -140,7 +146,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), "responseString=Age of the deceased:&action=request")
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -148,7 +154,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Sex of the deceased:1. Male 2. Female&action=request')
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -156,7 +162,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Date of death (ddmmyyyy):&action=request')
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -164,7 +170,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), "responseString=Names of Declarant:&action=request")
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -172,7 +178,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), "responseString=Declarant's Phone Number:&action=request")
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -180,7 +186,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), "responseString=Capacity: 1.Relative present at Death 2.Other Relative  3.Person present at death 4.House occupant at location 5.Person with knowledge 6. Person finding  body&action=request")
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -188,7 +194,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), "responseString=Summary deceased name: my first dead guy deacesed age: mbu 42 Deceased Sex: 1 declarant name: some woman declarant phone: 256782998903 declarant capacity: 1  Death Summary: &action=request")
-        response = self.sendRequest(transactionId = self.transactionId,\
+        response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
@@ -196,3 +202,44 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Thank you for recording a new death. Please inform relatives to present themselves at the Registrars office to complete the process&action=end')
+        
+    def testResumeDeathNotify(self):
+        response = self.sendRequest(transactionId = '123346',\
+                                    transactionTime = self.transactionTime, \
+                                    msisdn = self.msisdn, \
+                                    ussdServiceCode = self.msisdn, \
+                                    ussdRequestString = '', \
+                                    response = True\
+                                    )
+        self.assertEquals(response.status_code, 200)
+        response = self.sendRequest(transactionId = '123346',\
+                                    transactionTime = self.transactionTime, \
+                                    msisdn = self.msisdn, \
+                                    ussdServiceCode = self.msisdn, \
+                                    ussdRequestString = '2', \
+                                    response = True\
+                                    )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Enter names of the Deceased:&action=request")
+        response = self.sendRequest(transactionId = '123346',\
+                                    transactionTime = self.transactionTime, \
+                                    msisdn = self.msisdn, \
+                                    ussdServiceCode = self.msisdn, \
+                                    ussdRequestString = 'my first dead guy', \
+                                    response = True\
+                                    )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Age of the deceased:&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+                                    transactionTime = self.transactionTime, \
+                                    msisdn = self.msisdn, \
+                                    ussdServiceCode = self.msisdn, \
+                                    ussdRequestString = '', \
+                                    response = True\
+                                    )
+        response = self.sendRequest(transactionId = '123347',\
+                                    transactionTime = self.transactionTime, \
+                                    msisdn = self.msisdn, \
+                                    ussdServiceCode = self.msisdn, \
+                                    ussdRequestString = '5', \
+                                    response = True\
+                                    )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Age of the deceased:&action=request")
