@@ -67,30 +67,28 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
                 sess={}
                 sess['pk']=session.pk
                 sess['transaction_id']=session.transaction_id
-                cache.set(session.connection.identity,sess,1800)
+                cache.set(session.connection.identity, sess, 1800)
 
-        if session.navigations.count():
-            if session.navigations.order_by('-date')[0].screen.downcast().is_terminal():
-                #forward the responses in the session to utl
-                response = forward_to_utl(session)
-                
-                if not response.status_code == 200:
-                    #if the submission into utl does not return success?
-                    resp = "The information was not saved. Please start again"
-                    return render_to_response(output_template, {
+        #submit input and advance to the next screen
+        response_screen = advance_progress(session, request_string)
+        
+        #if we have already progressed to the last screen, the user must have put in a pin or cancelled, lets forward to UTL
+        if response_screen.slug == 'thank_msg' or response_screen.slug == 'death_thank_you':
+            response = forward_to_utl(session)
+            resp = response_screen
+            if request_string == '0' or response.status_code != 200:
+                resp = "The information was not saved. Please start again"
+                return render_to_response(output_template, {
                         'response_content':urllib.quote(str(resp)),
                         'action':'end',
                         }, context_instance=RequestContext(req))
-
-        #submit input and advance to the next screen
-        response_screen = advance_progress(session,request_string)
         
         #is this a terminal screen or not?
         action = 'end' if response_screen.is_terminal() else 'request'
         
         #Pre-pend a summary to the second last question
-        if str(response_screen) in ["Enter Pin to comfirm or 0 to cancel","Death Summary:"]:
-            response_screen="Summary %s %s " % (get_summary(session), str(response_screen))
+        if response_screen.slug in ["birth_summary","death_summary"]:
+            response_screen = "Summary %s %s " % (get_summary(session), str(response_screen))
         
         #Determine if a resume option has been selected and serve the last dropped session    
         label = response_screen if type(response_screen) == unicode else response_screen.label 

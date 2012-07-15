@@ -1,5 +1,109 @@
 [
     {
+        "pk": "death_reporter", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 39, 
+            "parent": "death_date", 
+            "level": 5, 
+            "label": "Date of death (ddmmyyyy):", 
+            "lft": 30, 
+            "tree_id": 1, 
+            "order": 1
+        }
+    }, 
+    {
+        "pk": "death_date", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 40, 
+            "parent": "death_sex", 
+            "level": 4, 
+            "label": "Date of death (ddmmyyyy):", 
+            "lft": 29, 
+            "tree_id": 1, 
+            "order": 1
+        }
+    }, 
+    {
+        "pk": "death_sex", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 41, 
+            "parent": "death_age", 
+            "level": 3, 
+            "label": "Sex of the deceased:1. Male 2. Female", 
+            "lft": 28, 
+            "tree_id": 1, 
+            "order": 1
+        }
+    }, 
+    {
+        "pk": "death_age", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 42, 
+            "parent": "death_name", 
+            "level": 2, 
+            "label": "Age of the deceased:", 
+            "lft": 27, 
+            "tree_id": 1, 
+            "order": 1
+        }
+    }, 
+    {
+        "pk": "death_name", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 43, 
+            "parent": "ussd_root", 
+            "level": 1, 
+            "label": "Notify Death", 
+            "lft": 26, 
+            "tree_id": 1, 
+            "order": 2
+        }
+    }, 
+    {
+        "pk": "resume11", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 46, 
+            "parent": "resume", 
+            "level": 2, 
+            "label": "resume", 
+            "lft": 45, 
+            "tree_id": 1, 
+            "order": 0
+        }
+    }, 
+    {
+        "pk": "resume", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 47, 
+            "parent": "ussd_root", 
+            "level": 1, 
+            "label": "Resume Previous", 
+            "lft": 44, 
+            "tree_id": 1, 
+            "order": 5
+        }
+    }, 
+    {
+        "pk": "ussd_root", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 48, 
+            "parent": null, 
+            "level": 0, 
+            "label": "", 
+            "lft": 1, 
+            "tree_id": 1, 
+            "order": 0
+        }
+    }, 
+    {
         "pk": "thank_msg", 
         "model": "ussd.screen", 
         "fields": {
@@ -156,10 +260,23 @@
         }
     }, 
     {
+        "pk": "death_thank_you", 
+        "model": "ussd.screen", 
+        "fields": {
+            "rght": 35, 
+            "parent": "death_summary", 
+            "level": 9, 
+            "label": "Thanks for death notification", 
+            "lft": 34, 
+            "tree_id": 1, 
+            "order": 1
+        }
+    }, 
+    {
         "pk": "death_summary", 
         "model": "ussd.screen", 
         "fields": {
-            "rght": 34, 
+            "rght": 36, 
             "parent": "death_reporter_capacity", 
             "level": 8, 
             "label": "Death Summary:", 
@@ -172,7 +289,7 @@
         "pk": "death_reporter_capacity", 
         "model": "ussd.screen", 
         "fields": {
-            "rght": 35, 
+            "rght": 37, 
             "parent": "death_reporter_phone", 
             "level": 7, 
             "label": "Capacity: 1.Relative present at Death 2.Other Relative  3.Person present at death 4.House occupant at location 5.Person with knowledge 6. Person finding  body", 
@@ -185,7 +302,7 @@
         "pk": "death_reporter_phone", 
         "model": "ussd.screen", 
         "fields": {
-            "rght": 36, 
+            "rght": 38, 
             "parent": "death_reporter", 
             "level": 6, 
             "label": "Declarant's Phone Number:", 
@@ -193,111 +310,22 @@
             "tree_id": 1, 
             "order": 1
         }
-    }, 
-    {
-        "pk": "death_reporter", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 37, 
-            "parent": "death_date", 
-            "level": 5, 
-            "label": "Date of death (ddmmyyyy):", 
-            "lft": 30, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_date", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 38, 
-            "parent": "death_sex", 
-            "level": 4, 
-            "label": "Date of death (ddmmyyyy):", 
-            "lft": 29, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_sex", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 39, 
-            "parent": "death_age", 
-            "level": 3, 
-            "label": "Sex of the deceased:1. Male 2. Female", 
-            "lft": 28, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_age", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 40, 
-            "parent": "death_name", 
-            "level": 2, 
-            "label": "Age of the deceased:", 
-            "lft": 27, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_name", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 41, 
-            "parent": "ussd_root", 
-            "level": 1, 
-            "label": "Notify Death", 
-            "lft": 26, 
-            "tree_id": 1, 
-            "order": 2
-        }
-    }, 
+    },
     {
         "pk": "resume11", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 44, 
-            "parent": "resume", 
-            "level": 2, 
-            "label": "resume", 
-            "lft": 43, 
-            "tree_id": 1, 
-            "order": 0
-        }
+        "model": "ussd.menu", 
+        "fields": {}
     }, 
     {
         "pk": "resume", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 45, 
-            "parent": "ussd_root", 
-            "level": 1, 
-            "label": "Resume Previous", 
-            "lft": 42, 
-            "tree_id": 1, 
-            "order": 5
-        }
+        "model": "ussd.menu", 
+        "fields": {}
     }, 
     {
         "pk": "ussd_root", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 46, 
-            "parent": null, 
-            "level": 0, 
-            "label": "", 
-            "lft": 1, 
-            "tree_id": 1, 
-            "order": 0
-        }
-    },
+        "model": "ussd.menu", 
+        "fields": {}
+    }, 
     {
         "pk": "user_manage", 
         "model": "ussd.menu", 
@@ -307,22 +335,47 @@
         "pk": "edit_record", 
         "model": "ussd.menu", 
         "fields": {}
-    }, 
-    {
-        "pk": "resume11", 
-        "model": "ussd.menu", 
-        "fields": {}
-    }, 
-    {
-        "pk": "resume", 
-        "model": "ussd.menu", 
-        "fields": {}
-    }, 
-    {
-        "pk": "ussd_root", 
-        "model": "ussd.menu", 
-        "fields": {}
     },
+    {
+        "pk": "death_reporter", 
+        "model": "ussd.question", 
+        "fields": {
+            "question_text": "Names of Declarant:", 
+            "next": "death_reporter_phone"
+        }
+    }, 
+    {
+        "pk": "death_date", 
+        "model": "ussd.question", 
+        "fields": {
+            "question_text": "Date of death (ddmmyyyy):", 
+            "next": "death_reporter"
+        }
+    }, 
+    {
+        "pk": "death_sex", 
+        "model": "ussd.question", 
+        "fields": {
+            "question_text": "Sex of the deceased:1. Male 2. Female", 
+            "next": "death_date"
+        }
+    }, 
+    {
+        "pk": "death_age", 
+        "model": "ussd.question", 
+        "fields": {
+            "question_text": "Age of the deceased:", 
+            "next": "death_sex"
+        }
+    }, 
+    {
+        "pk": "death_name", 
+        "model": "ussd.question", 
+        "fields": {
+            "question_text": "Enter names of the Deceased:", 
+            "next": "death_age"
+        }
+    }, 
     {
         "pk": "thank_msg", 
         "model": "ussd.question", 
@@ -404,11 +457,19 @@
         }
     }, 
     {
+        "pk": "death_thank_you", 
+        "model": "ussd.question", 
+        "fields": {
+            "question_text": "Thank you for recording a new death. Please inform relatives to present themselves at the Registrars office to complete the process", 
+            "next": null
+        }
+    }, 
+    {
         "pk": "death_summary", 
         "model": "ussd.question", 
         "fields": {
             "question_text": "Death Summary:", 
-            "next": null
+            "next": "death_thank_you"
         }
     }, 
     {
@@ -425,46 +486,6 @@
         "fields": {
             "question_text": "Declarant's Phone Number:", 
             "next": "death_reporter_capacity"
-        }
-    }, 
-    {
-        "pk": "death_reporter", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Names of Declarant:", 
-            "next": "death_reporter_phone"
-        }
-    }, 
-    {
-        "pk": "death_date", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Date of death (ddmmyyyy):", 
-            "next": "death_reporter"
-        }
-    }, 
-    {
-        "pk": "death_sex", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Sex of the deceased:1. Male 2. Female", 
-            "next": "death_date"
-        }
-    }, 
-    {
-        "pk": "death_age", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Age of the deceased:", 
-            "next": null
-        }
-    }, 
-    {
-        "pk": "death_name", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Enter names of the Deceased:", 
-            "next": "death_sex"
         }
     }
 ]
