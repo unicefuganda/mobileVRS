@@ -76,7 +76,9 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         if response_screen.slug == 'thank_msg' or response_screen.slug == 'death_thank_you':
             response = forward_to_utl(session)
             resp = response_screen
-            if request_string == '0' or response.status_code != 200:
+#            print response.getcode()
+#            if request_string == '0' or response.status_code != 200:
+            if request_string == '0' or response.getcode() != 200:
                 resp = "The information was not saved. Please start again"
                 return render_to_response(output_template, {
                         'response_content':urllib.quote(str(resp)),

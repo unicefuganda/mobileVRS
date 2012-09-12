@@ -2,15 +2,17 @@ from django.test import TestCase
 from django.test.client import Client
 from django.test.client import RequestFactory
 from django.core.urlresolvers import reverse
-import datetime
+from django.conf import settings
 import urllib2
+import urllib
+import datetime
 
 class ViewTest(TestCase):
 
     def setUp(self):
         self.transactionId = '123344'
         self.transactionTime = datetime.datetime.now().strftime('%Y%m%dT%H:%M:%S')
-        self.msisdn = '256772698723'
+        self.msisdn = '256776520831'
         self.ussdServiceCode = '130'
         self.ussdRequestString = ''
         self.response = False
@@ -36,6 +38,27 @@ class ViewTest(TestCase):
         response = self.sendRequest()
         self.assertEquals(response.status_code, 200)
         self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
+        
+    def testUTLDataPost(self):
+        data_structure = settings.UTL_BIRTH_DICT
+        keys = dict([[v,k] for k,v in data_structure.items()])
+        action = 'NEWBIRTH'
+        post_data = {
+            "NMNAT":"1",
+            "NFNAT":"1",
+            "NMOT":"test mother name",
+            "NFAT":"test father name",
+            "NSEX":"1",
+            "NDATE":"11092012",
+            "NNAME":"test child name",
+            "NLNAME":"other child name",
+            "PIN":"9045",
+            "MSISDN":"256776520831",
+            "ACTION":action,
+            "SESSION":"1123",
+        }
+        result = urllib2.urlopen('http://www.mobilevrs.co.ug/ussd/notify.php?%s' % urllib.urlencode(post_data))
+        self.assertEquals(result.getcode(), 200)
         
     def testBirthNotify(self):
         response = self.sendRequest()
@@ -116,7 +139,7 @@ class ViewTest(TestCase):
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
-                                    ussdRequestString = '1234', \
+                                    ussdRequestString = '9045', \
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Thank you for recording a new birth! You will  receive a confirmation message with the summary of the record and the registration number&action=end')
@@ -198,7 +221,7 @@ class ViewTest(TestCase):
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
                                     ussdServiceCode = self.msisdn, \
-                                    ussdRequestString = '1234', \
+                                    ussdRequestString = '9045', \
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Thank you for recording a new death. Please inform relatives to present themselves at the Registrars office to complete the process&action=end')
