@@ -23,7 +23,7 @@ def get_summary_dict(session, ussd_menu_dict, action):
         else:
             if keys.get(nav.screen.downcast().slug):
                 results[keys.get(nav.screen.downcast().slug)] = nav.response
-    results['SESSION'] = session.pk
+    results['SESSION'] = session.transaction_id
     results['MSISDN'] = session.connection.identity
     results['PIN'] = pin
     results['ACTION'] = action

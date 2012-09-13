@@ -63,6 +63,7 @@ class ViewTest(TestCase):
     def testBirthNotify(self):
         response = self.sendRequest()
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
         response = self.sendRequest(transactionId = self.transactionId,\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -153,6 +154,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
         response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -235,6 +237,7 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(response.status_code, 200)
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
         response = self.sendRequest(transactionId = '123346',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -258,6 +261,7 @@ class ViewTest(TestCase):
                                     ussdRequestString = '', \
                                     response = True\
                                     )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
         response = self.sendRequest(transactionId = '123347',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
