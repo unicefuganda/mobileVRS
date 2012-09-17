@@ -88,6 +88,12 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         if response_screen.slug == 'thank_msg' or response_screen.slug == 'death_thank_you':
             logger.info('Preparing to submit this data...')
             response = forward_to_utl(session)
+            if response and response.getcode() == 200:
+                return render_to_response(output_template, {
+                        'response_content':urllib.quote(str(response.read().strip())),
+                        'action':'end',
+                        }, context_instance=RequestContext(req))
+                
             resp = response_screen
             if request_string == '0' or response.getcode() != 200:
                 resp = "The information was not saved. Please start again"
