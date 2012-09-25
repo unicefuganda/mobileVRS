@@ -132,6 +132,6 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
             'action':action,
             }, context_instance=RequestContext(req))
 
-
+    logging.info('Status is 404...')
     return HttpResponse(status=404)
 
