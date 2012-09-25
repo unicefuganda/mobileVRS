@@ -216,7 +216,7 @@ class ViewTest(TestCase):
                                     ussdRequestString = '1', \
                                     response = True\
                                     )
-        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary deceased name: my first dead guy deacesed age: mbu 42 Deceased Sex: 1 declarant name: some woman declarant phone: 256782998903 declarant capacity: 1  Death Summary: &action=request")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary deceased name: my first dead guy deacesed age: mbu 42 Deceased Sex: 1 Death date 12072012 declarant name: some woman declarant phone: 256782998903 declarant capacity: 1  Death Summary: &action=request")
         response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -358,7 +358,7 @@ class ViewTest(TestCase):
             ussdRequestString = '1',\
             response = False\
         )
-        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary deacesed age: 45 declarant capacity: 1 declarant phone: 63773737737 deceased name: Mr. Dead Deceased Sex: 1 Death date 12122011 declarant name: Kenneth  Enter Pin to comfirm or 0 to cancel &action=request")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary declarant capacity: 1 deceased name: Mr. Dead deacesed age: 45 Deceased Sex: 1 Death date 12122011 declarant name: Kenneth declarant phone: 63773737737  Death Summary: &action=request")
         response = self.sendRequest(transactionId = '123347',\
             transactionTime = self.transactionTime,\
             msisdn = self.msisdn,\

@@ -1,3 +1,4 @@
+from django.template.loader import render_to_string
 from rapidsms_uganda_ussd.ussd.forms import YoForm
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -117,6 +118,10 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         #TODO: handle edit function
         #TODO: handle user management
         #TODO: handle skips
+        logging.info('Sending response to Yo " %s "'%render_to_string(output_template,{
+            'response_content':urllib.quote(str(response_screen)),
+            'action':action,
+            }))
 
         return render_to_response(output_template, {
             'response_content':urllib.quote(str(response_screen)),
