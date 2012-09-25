@@ -1,4 +1,10 @@
 *.log
 *.pot
 *.pyc
-local_settings.py
+localsettings.py
+log
+build
+mobilevrs_project/mobilevrs/creator.py
+*.json~
+.idea
+mobilevrs_project/mobilevrs/fixtures/initial_data_.json

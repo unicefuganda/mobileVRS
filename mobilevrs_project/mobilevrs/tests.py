@@ -1,7 +1,5 @@
 from django.test import TestCase
 from django.test.client import Client
-from django.test.client import RequestFactory
-from django.core.urlresolvers import reverse
 from django.conf import settings
 import urllib2
 import urllib
@@ -270,3 +268,102 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), "responseString=Age of the deceased:&action=request")
+
+    def testResumeDeathNotifyAccuracy(self):
+        response = self.sendRequest(transactionId = '123346',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '',\
+            response = True\
+        )
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
+        response = self.sendRequest(transactionId = '123346',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '2',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Enter names of the Deceased:&action=request")
+        response = self.sendRequest(transactionId = '123346',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = 'Mr. Dead',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Age of the deceased:&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '5',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Age of the deceased:&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '45',\
+            response = True\
+        )
+        self.assertEqual(urllib2.unquote(response.content), "responseString=Sex of the deceased:1. Male 2. Female&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '1',\
+            response = True\
+        )
+        self.assertEqual(urllib2.unquote(response.content), "responseString=Date of death (ddmmyyyy):&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '12122011',\
+            response = True\
+        )
+        self.assertEqual(urllib2.unquote(response.content), "responseString=Names of Declarant:&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = 'Kenneth',\
+            response = True\
+        )
+        self.assertEqual(urllib2.unquote(response.content), "responseString=Declarant's Phone Number:&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '63773737737',\
+            response = True\
+        )
+        self.assertEqual(urllib2.unquote(response.content), "responseString=Capacity: 1.Relative present at Death 2.Other Relative  3.Person present at death 4.House occupant at location 5.Person with knowledge 6. Person finding  body&action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '1',\
+            response = False\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary deacesed age: 45 declarant capacity: 1 declarant phone: 63773737737 deceased name: Mr. Dead Deceased Sex: 1 Death date 12122011 declarant name: Kenneth  Enter Pin to comfirm or 0 to cancel &action=request")
+        response = self.sendRequest(transactionId = '123347',\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '9045',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), 'responseString=Thank you for recording a new death. Please inform relatives to present themselves at the Registrars office to complete the process&action=end')
