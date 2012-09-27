@@ -421,7 +421,7 @@ class ViewTest(TestCase):
             ussdRequestString = '4',\
             response = True\
         )
-        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Create User\n2. Edit User Info\n#. Back&action=request")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Create User\n2. Modify Pin\n#. Back&action=request")
         response = self.sendRequest(transactionId = self.transactionId,\
             transactionTime = self.transactionTime,\
             msisdn = self.msisdn,\

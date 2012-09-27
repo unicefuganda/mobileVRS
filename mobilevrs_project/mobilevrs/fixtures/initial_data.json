@@ -197,7 +197,7 @@
         "model" : "ussd.screen",
         "pk" : "death_age"
     },
-    { "fields" : { "label" : "Edit User Info",
+    { "fields" : { "label" : "Modify Pin",
         "level" : 2,
         "lft" : 5,
         "order" : 2,
