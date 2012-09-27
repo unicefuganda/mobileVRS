@@ -7,4 +7,4 @@ build
 mobilevrs_project/mobilevrs/creator.py
 *.json~
 .idea
-mobilevrs_project/mobilevrs/fixtures/initial_data_.json
+mobilevrs_project/mobilevrs/fixtures/bkup
