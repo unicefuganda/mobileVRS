@@ -364,13 +364,13 @@
         "pk" : "user_management"
     },
     { "fields" : { "next" : "thank_msg",
-        "question_text" : "Enter Pin to comfirm or 0 to cancel"
+        "question_text" : "Enter Pin to confirm or \"0\" to cancel"
     },
         "model" : "ussd.question",
         "pk" : "birth_summary"
     },
     { "fields" : { "next" : "birth_summary",
-        "question_text" : "Select father's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\nOthers (Type in the country manually)"
+        "question_text" : "Select father's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\n5. Burundi\n6. South Sudan\n7. DR Congo\nOthers (Type in the country manually)"
     },
         "model" : "ussd.question",
         "pk" : "father_nationality"
@@ -382,7 +382,7 @@
         "pk" : "father_name"
     },
     { "fields" : { "next" : "father_name",
-        "question_text" : "Select mother's nationality:\n1. Uganda \n2. Kenya \n3. Tanzania \n4. Rwanda \nOthers (Type in the country manually)"
+        "question_text" : "Select mother's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\n5. Burundi\n6. South Sudan\n7. DR Congo\nOthers (Type in the country manually)"
     },
         "model" : "ussd.question",
         "pk" : "mother_nationality"
@@ -412,7 +412,7 @@
         "pk" : "other_name"
     },
     { "fields" : { "next" : "death_thank_you",
-        "question_text" : "Enter Pin to comfirm or 0 to cancel"
+        "question_text" : "Enter Pin to confirm or \"0\" to cancel"
     },
         "model" : "ussd.question",
         "pk" : "death_summary"
@@ -671,7 +671,7 @@
     { "fields" : { "command" : "e",
         "field_type" : "int",
         "order" : 1,
-        "question" : "Enter Pin to comfirm or 0 to cancel",
+        "question" : "Enter Pin to confirm or \"0\" to cancel",
         "xform" : 1
     },
         "model" : "rapidsms_xforms.xformfield",
@@ -680,7 +680,7 @@
     { "fields" : { "command" : "e1",
         "field_type" : "text",
         "order" : 1,
-        "question" : "Select father's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\nOthers (Type in the country manually)",
+        "question" : "Select father's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\n5. Burundi\n6. South Sudan\n7. DR Congo\nOthers (Type in the country manually)",
         "xform" : 1
     },
         "model" : "rapidsms_xforms.xformfield",
@@ -698,7 +698,7 @@
     { "fields" : { "command" : "e3",
         "field_type" : "text",
         "order" : 1,
-        "question" : "Select mother's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\nOthers (Type in the country manually)",
+        "question" : "Select mother's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\n5. Burundi\n6. South Sudan\n7. DR Congo\nOthers (Type in the country manually)",
         "xform" : 1
     },
         "model" : "rapidsms_xforms.xformfield",
@@ -743,7 +743,7 @@
     { "fields" : { "command" : "e8",
         "field_type" : "int",
         "order" : 1,
-        "question" : "Enter Pin to comfirm or 0 to cancel",
+        "question" : "Enter Pin to confirm or \"0\" to cancel",
         "xform" : 1
     },
         "model" : "rapidsms_xforms.xformfield",

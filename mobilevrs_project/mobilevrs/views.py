@@ -86,7 +86,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
             logger.info('Preparing to submit this data...')
             response = forward_to_utl(session)
             if request_string == '0' or response.getcode() != 200:
-                resp = "The information was not saved. Please start again"
+                resp = "The information was not recorded. Please start again"
                 logging.info('Sending response to Yo " %s "'%render_to_string(output_template,{
                     'response_content':urllib.quote(str(response_screen)),
                     'action':'end',
@@ -101,7 +101,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
 
         #Pre-pend a summary to the second last question
         if response_screen.slug in ["birth_summary","death_summary","e_confirm"]:
-            response_screen = "Summary %s %s " % (get_summary(session), str(response_screen))
+#            response_screen = "Summary %s %s " % (get_summary(session), str(response_screen))
             logger.info('Returning Summary Screen: %s' % response_screen)
 
         #Determine if a resume option has been selected and serve the last dropped session    

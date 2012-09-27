@@ -114,7 +114,7 @@ class ViewTest(TestCase):
                                     ussdRequestString = 'the mother', \
                                     response = True\
                                     )
-        self.assertEquals(urllib2.unquote(response.content), "responseString=Select mother's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\nOthers (Type in the country manually)&action=request")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Select mother's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\n5. Burundi\n6. South Sudan\n7. DR Congo\nOthers (Type in the country manually)&action=request")
         response = self.sendRequest(transactionId = self.transactionId,\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -130,7 +130,7 @@ class ViewTest(TestCase):
                                     ussdRequestString = 'the father', \
                                     response = True\
                                     )
-        self.assertEquals(urllib2.unquote(response.content), "responseString=Select father's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\nOthers (Type in the country manually)&action=request")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Select father's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\n5. Burundi\n6. South Sudan\n7. DR Congo\nOthers (Type in the country manually)&action=request")
         response = self.sendRequest(transactionId = self.transactionId,\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -138,7 +138,7 @@ class ViewTest(TestCase):
                                     ussdRequestString = '1', \
                                     response = True\
                                     )
-#        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary child first name: my first guy child other name: the other name date of birth: 1 child sex 1 mother nationality: 1 father name: the father father nationality: 1  Enter Pin to comfirm or 0 to cancel &action=request")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Enter Pin to confirm or \"0\" to cancel&action=request")
         response = self.sendRequest(transactionId = self.transactionId,\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -258,7 +258,7 @@ class ViewTest(TestCase):
                                     ussdRequestString = '1', \
                                     response = True\
                                     )
-#        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary deceased name: my first dead guy deacesed age: 42 Deceased Sex: 1 Death date 12072012 declarant name: some woman declarant phone: 256782998903 declarant capacity: 1  Death Summary: &action=request")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Enter Pin to confirm or \"0\" to cancel&action=request")
         response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -477,7 +477,7 @@ class ViewTest(TestCase):
             ussdRequestString = 'kampala',\
             response = True\
         )
-        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary Surname user register Other Names Other names Sex 1 Date of Birth 12121999 Phone 078942422424 Parish or Ward kampala  Enter  PIN to confirm or \"0\" to cancel &action=request")
+        self.assertEquals(urllib2.unquote(response.content), 'responseString=Enter  PIN to confirm or "0" to cancel&action=request')
         response = self.sendRequest(transactionId = self.transactionId,\
             transactionTime = self.transactionTime,\
             msisdn = self.msisdn,\
