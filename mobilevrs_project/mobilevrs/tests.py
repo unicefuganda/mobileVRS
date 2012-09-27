@@ -477,7 +477,7 @@ class ViewTest(TestCase):
             ussdRequestString = 'kampala',\
             response = True\
         )
-        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary Surname user register Other Name Other names Sex 1 Date of Birth 12121999 Phone 078942422424 Parish or Ward kampala  Enter  PIN to confirm or \"0\" to cancel &action=request")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary Surname user register Other Names Other names Sex 1 Date of Birth 12121999 Phone 078942422424 Parish or Ward kampala  Enter  PIN to confirm or \"0\" to cancel &action=request")
         response = self.sendRequest(transactionId = self.transactionId,\
             transactionTime = self.transactionTime,\
             msisdn = self.msisdn,\
