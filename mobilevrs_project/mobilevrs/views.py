@@ -74,10 +74,9 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
 
         #submit input and advance to the next screen
         response_screen = advance_progress(session, request_string)
-        if not response_screen.label:
+        if isinstance(response_screen,Menu):
             last_nav = Navigation.objects.order_by('-date').filter(session=session)[0]
-            if last_nav.screen.downcast().slug == 'ussd_root' and last_nav.screen.downcast().parent == None:
-                logger.info('We asked: %s' % session.get_initial_screen().downcast())
+            logger.info('We asked: %s' % last_nav.screen.downcast())
         else:
             question = response_screen.question if isinstance(response_screen,Question) else response_screen.label
             logger.info('We asked: %s' % question)
@@ -101,7 +100,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         action = 'end' if response_screen.is_terminal() else 'request'
 
         #Pre-pend a summary to the second last question
-        if response_screen.slug in ["birth_summary","death_summary"]:
+        if response_screen.slug in ["birth_summary","death_summary","e_confirm"]:
             response_screen = "Summary %s %s " % (get_summary(session), str(response_screen))
             logger.info('Returning Summary Screen: %s' % response_screen)
 

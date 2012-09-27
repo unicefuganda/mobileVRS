@@ -1,491 +1,1332 @@
 [
-    {
-        "pk": "death_reporter", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 39, 
-            "parent": "death_date", 
-            "level": 5, 
-            "label": "Date of death (ddmmyyyy):", 
-            "lft": 30, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_date", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 40, 
-            "parent": "death_sex", 
-            "level": 4, 
-            "label": "Date of death (ddmmyyyy):", 
-            "lft": 29, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_sex", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 41, 
-            "parent": "death_age", 
-            "level": 3, 
-            "label": "Sex of the deceased:1. Male 2. Female", 
-            "lft": 28, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_age", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 42, 
-            "parent": "death_name", 
-            "level": 2, 
-            "label": "Age of the deceased:", 
-            "lft": 27, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_name", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 43, 
-            "parent": "ussd_root", 
-            "level": 1, 
-            "label": "Notify Death", 
-            "lft": 26, 
-            "tree_id": 1, 
-            "order": 2
-        }
-    }, 
-    {
-        "pk": "resume11", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 46, 
-            "parent": "resume", 
-            "level": 2, 
-            "label": "resume", 
-            "lft": 45, 
-            "tree_id": 1, 
-            "order": 0
-        }
-    }, 
-    {
-        "pk": "resume", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 47, 
-            "parent": "ussd_root", 
-            "level": 1, 
-            "label": "Resume Previous", 
-            "lft": 44, 
-            "tree_id": 1, 
-            "order": 5
-        }
-    }, 
-    {
-        "pk": "ussd_root", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 48, 
-            "parent": null, 
-            "level": 0, 
-            "label": "", 
-            "lft": 1, 
-            "tree_id": 1, 
-            "order": 0
-        }
-    }, 
-    {
-        "pk": "thank_msg", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 12, 
-            "parent": "birth_summary", 
-            "level": 10, 
-            "label": "Thanks for birth notification", 
-            "lft": 11, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "birth_summary", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 13, 
-            "parent": "father_nationality", 
-            "level": 9, 
-            "label": "Enter Pin to comfirm or 0 to cancel", 
-            "lft": 10, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "father_nationality", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 14, 
-            "parent": "father_name", 
-            "level": 8, 
-            "label": "Select father's nationality:1. Uganda 2. Kenya 3. Tanzania 4. Rwanda Others (Type in the country manually)", 
-            "lft": 9, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "father_name", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 15, 
-            "parent": "mother_nationality", 
-            "level": 7, 
-            "label": "Enter father's names:", 
-            "lft": 8, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "mother_nationality", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 16, 
-            "parent": "child_mother_name", 
-            "level": 6, 
-            "label": "Select mother's nationality:1. Uganda 2. Kenya 3. Tanzania 4. Rwanda Others (Type in the country manually)", 
-            "lft": 7, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "child_mother_name", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 17, 
-            "parent": "child_sex", 
-            "level": 5, 
-            "label": "Enter mother's names:", 
-            "lft": 6, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "child_sex", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 18, 
-            "parent": "birth_date", 
-            "level": 4, 
-            "label": "Select the sex of the child:\n 1. Male\n 2. Female", 
-            "lft": 5, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "birth_date", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 19, 
-            "parent": "other_name", 
-            "level": 3, 
-            "label": "Enter date of birth: 1. Today 2. Yesterday  Other (Enter manually in the format ddmmyyyy) ", 
-            "lft": 4, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "other_name", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 20, 
-            "parent": "child_first_name", 
-            "level": 2, 
-            "label": "Enter child's other name(s):", 
-            "lft": 3, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "child_first_name", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 21, 
-            "parent": "ussd_root", 
-            "level": 1, 
-            "label": "Notify Birth", 
-            "lft": 2, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "user_manage", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 23, 
-            "parent": "ussd_root", 
-            "level": 1, 
-            "label": "User Management", 
-            "lft": 22, 
-            "tree_id": 1, 
-            "order": 4
-        }
-    }, 
-    {
-        "pk": "edit_record", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 25, 
-            "parent": "ussd_root", 
-            "level": 1, 
-            "label": "Edit Record", 
-            "lft": 24, 
-            "tree_id": 1, 
-            "order": 3
-        }
-    }, 
-    {
-        "pk": "death_thank_you", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 35, 
-            "parent": "death_summary", 
-            "level": 9, 
-            "label": "Thanks for death notification", 
-            "lft": 34, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_summary", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 36, 
-            "parent": "death_reporter_capacity", 
-            "level": 8, 
-            "label": "Death Summary:", 
-            "lft": 33, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_reporter_capacity", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 37, 
-            "parent": "death_reporter_phone", 
-            "level": 7, 
-            "label": "Capacity: 1.Relative present at Death 2.Other Relative  3.Person present at death 4.House occupant at location 5.Person with knowledge 6. Person finding  body", 
-            "lft": 32, 
-            "tree_id": 1, 
-            "order": 1
-        }
-    }, 
-    {
-        "pk": "death_reporter_phone", 
-        "model": "ussd.screen", 
-        "fields": {
-            "rght": 38, 
-            "parent": "death_reporter", 
-            "level": 6, 
-            "label": "Declarant's Phone Number:", 
-            "lft": 31, 
-            "tree_id": 1, 
-            "order": 1
-        }
+    { "fields" : { "label" : "Edit Record",
+        "level" : 1,
+        "lft" : 2,
+        "order" : 3,
+        "parent" : "ussd_root",
+        "rght" : 3,
+        "tree_id" : 1
     },
-    {
-        "pk": "resume11", 
-        "model": "ussd.menu", 
-        "fields": {}
-    }, 
-    {
-        "pk": "resume", 
-        "model": "ussd.menu", 
-        "fields": {}
-    }, 
-    {
-        "pk": "ussd_root", 
-        "model": "ussd.menu", 
-        "fields": {}
-    }, 
-    {
-        "pk": "user_manage", 
-        "model": "ussd.menu", 
-        "fields": {}
-    }, 
-    {
-        "pk": "edit_record", 
-        "model": "ussd.menu", 
-        "fields": {}
+        "model" : "ussd.screen",
+        "pk" : "edit_record"
     },
-    {
-        "pk": "death_reporter", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Names of Declarant:", 
-            "next": "death_reporter_phone"
-        }
-    }, 
-    {
-        "pk": "death_date", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Date of death (ddmmyyyy):", 
-            "next": "death_reporter"
-        }
-    }, 
-    {
-        "pk": "death_sex", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Sex of the deceased:1. Male 2. Female", 
-            "next": "death_date"
-        }
-    }, 
-    {
-        "pk": "death_age", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Age of the deceased:", 
-            "next": "death_sex"
-        }
-    }, 
-    {
-        "pk": "death_name", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Enter names of the Deceased:", 
-            "next": "death_age"
-        }
-    }, 
-    {
-        "pk": "thank_msg", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Thank you for recording a new birth! You will  receive a confirmation message with the summary of the record and the registration number", 
-            "next": null
-        }
-    }, 
-    {
-        "pk": "birth_summary", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Enter Pin to comfirm or 0 to cancel", 
-            "next": "thank_msg"
-        }
-    }, 
-    {
-        "pk": "father_nationality", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Select father's nationality:1. Uganda 2. Kenya 3. Tanzania 4. Rwanda Others (Type in the country manually)", 
-            "next": "birth_summary"
-        }
-    }, 
-    {
-        "pk": "father_name", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Enter father's names:", 
-            "next": "father_nationality"
-        }
-    }, 
-    {
-        "pk": "mother_nationality", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Select mother's nationality:1. Uganda 2. Kenya 3. Tanzania 4. Rwanda Others (Type in the country manually)", 
-            "next": "father_name"
-        }
-    }, 
-    {
-        "pk": "child_mother_name", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Enter mother's names:", 
-            "next": "mother_nationality"
-        }
-    }, 
-    {
-        "pk": "child_sex", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Select the sex of the child:\n 1. Male\n 2. Female", 
-            "next": "child_mother_name"
-        }
-    }, 
-    {
-        "pk": "birth_date", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Enter date of birth: 1. Today 2. Yesterday  Other (Enter manually in the format ddmmyyyy) ", 
-            "next": "child_sex"
-        }
-    }, 
-    {
-        "pk": "other_name", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Enter child's other name(s):", 
-            "next": "birth_date"
-        }
-    }, 
-    {
-        "pk": "child_first_name", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Enter Child's first name :", 
-            "next": "other_name"
-        }
-    }, 
-    {
-        "pk": "death_thank_you", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Thank you for recording a new death. Please inform relatives to present themselves at the Registrars office to complete the process", 
-            "next": null
-        }
-    }, 
-    {
-        "pk": "death_summary", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Death Summary:", 
-            "next": "death_thank_you"
-        }
-    }, 
-    {
-        "pk": "death_reporter_capacity", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Capacity: 1.Relative present at Death 2.Other Relative  3.Person present at death 4.House occupant at location 5.Person with knowledge 6. Person finding  body", 
-            "next": "death_summary"
-        }
-    }, 
-    {
-        "pk": "death_reporter_phone", 
-        "model": "ussd.question", 
-        "fields": {
-            "question_text": "Declarant's Phone Number:", 
-            "next": "death_reporter_capacity"
-        }
+    { "fields" : { "label" : "",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 2
+    },
+        "model" : "ussd.screen",
+        "pk" : "thank_msg"
+    },
+    { "fields" : { "label" : "Birth Summary",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 3
+    },
+        "model" : "ussd.screen",
+        "pk" : "birth_summary"
+    },
+    { "fields" : { "label" : "Father's Nationality",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 4
+    },
+        "model" : "ussd.screen",
+        "pk" : "father_nationality"
+    },
+    { "fields" : { "label" : "Father's Name",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 5
+    },
+        "model" : "ussd.screen",
+        "pk" : "father_name"
+    },
+    { "fields" : { "label" : "Mother's Nationality",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 6
+    },
+        "model" : "ussd.screen",
+        "pk" : "mother_nationality"
+    },
+    { "fields" : { "label" : "Mother's name",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 7
+    },
+        "model" : "ussd.screen",
+        "pk" : "mother_name"
+    },
+    { "fields" : { "label" : "Child's Sex",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 8
+    },
+        "model" : "ussd.screen",
+        "pk" : "child_sex"
+    },
+    { "fields" : { "label" : "Date of Birth",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 9
+    },
+        "model" : "ussd.screen",
+        "pk" : "birth_date"
+    },
+    { "fields" : { "label" : "Child Name",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 10
+    },
+        "model" : "ussd.screen",
+        "pk" : "other_name"
+    },
+    { "fields" : { "label" : "",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 11
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_thank_you"
+    },
+    { "fields" : { "label" : "Death Summary",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 12
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_summary"
+    },
+    { "fields" : { "label" : "Declarant Capacity",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 13
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_reporter_capacity"
+    },
+    { "fields" : { "label" : "Declarant Phone Number",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 14
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_reporter_phone"
+    },
+    { "fields" : { "label" : "Declarant Name",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 15
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_reporter"
+    },
+    { "fields" : { "label" : "Deceased Date",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 16
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_date"
+    },
+    { "fields" : { "label" : "Deceased Sex",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 17
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_sex"
+    },
+    { "fields" : { "label" : "Deceased Age",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 18
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_age"
+    },
+    { "fields" : { "label" : "Edit User Info",
+        "level" : 2,
+        "lft" : 5,
+        "order" : 2,
+        "parent" : "user_management",
+        "rght" : 6,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "edit_user"
+    },
+    { "fields" : { "label" : "thank you",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 19
+    },
+        "model" : "ussd.screen",
+        "pk" : "e_thank_you"
+    },
+    { "fields" : { "label" : "Confirm",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 20
+    },
+        "model" : "ussd.screen",
+        "pk" : "e_confirm"
+    },
+    { "fields" : { "label" : "Parish or Ward",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 21
+    },
+        "model" : "ussd.screen",
+        "pk" : "e_parish_or_ward"
+    },
+    { "fields" : { "label" : "Phone Number",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 22
+    },
+        "model" : "ussd.screen",
+        "pk" : "e_phone"
+    },
+    { "fields" : { "label" : "Birth Date",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 23
+    },
+        "model" : "ussd.screen",
+        "pk" : "e_birth_date"
+    },
+    { "fields" : { "label" : "Gender",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 24
+    },
+        "model" : "ussd.screen",
+        "pk" : "e_gender"
+    },
+    { "fields" : { "label" : "Other Names",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 0,
+        "parent" : null,
+        "rght" : 2,
+        "tree_id" : 25
+    },
+        "model" : "ussd.screen",
+        "pk" : "e_other_name"
+    },
+    { "fields" : { "label" : "User Management",
+        "level" : 1,
+        "lft" : 4,
+        "order" : 4,
+        "parent" : "ussd_root",
+        "rght" : 9,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "user_management"
+    },
+    { "fields" : { "label" : "Notify Birth",
+        "level" : 1,
+        "lft" : 10,
+        "order" : 1,
+        "parent" : "ussd_root",
+        "rght" : 11,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "child_first_name"
+    },
+    { "fields" : { "label" : "Notify Death",
+        "level" : 1,
+        "lft" : 12,
+        "order" : 2,
+        "parent" : "ussd_root",
+        "rght" : 13,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "death_name"
+    },
+    { "fields" : { "label" : "Create User",
+        "level" : 2,
+        "lft" : 7,
+        "order" : 1,
+        "parent" : "user_management",
+        "rght" : 8,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "create_user"
+    },
+    { "fields" : { "label" : "Root Menu",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 1,
+        "parent" : null,
+        "rght" : 16,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "ussd_root"
+    },
+    { "fields" : { "label" : "Resume Previous",
+        "level" : 1,
+        "lft" : 14,
+        "order" : 5,
+        "parent" : "ussd_root",
+        "rght" : 15,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "resume"
+    },
+    { "fields" : {  },
+        "model" : "ussd.menu",
+        "pk" : "ussd_root"
+    },
+    { "fields" : {  },
+        "model" : "ussd.menu",
+        "pk" : "edit_record"
+    },
+    { "fields" : {  },
+        "model" : "ussd.menu",
+        "pk" : "user_management"
+    },
+    { "fields" : { "next" : "thank_msg",
+        "question_text" : "Enter Pin to comfirm or 0 to cancel"
+    },
+        "model" : "ussd.question",
+        "pk" : "birth_summary"
+    },
+    { "fields" : { "next" : "birth_summary",
+        "question_text" : "Select father's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\nOthers (Type in the country manually)"
+    },
+        "model" : "ussd.question",
+        "pk" : "father_nationality"
+    },
+    { "fields" : { "next" : "father_nationality",
+        "question_text" : "Enter father's names:"
+    },
+        "model" : "ussd.question",
+        "pk" : "father_name"
+    },
+    { "fields" : { "next" : "father_name",
+        "question_text" : "Select mother's nationality:\n1. Uganda \n2. Kenya \n3. Tanzania \n4. Rwanda \nOthers (Type in the country manually)"
+    },
+        "model" : "ussd.question",
+        "pk" : "mother_nationality"
+    },
+    { "fields" : { "next" : "mother_nationality",
+        "question_text" : "Enter mother's names:"
+    },
+        "model" : "ussd.question",
+        "pk" : "mother_name"
+    },
+    { "fields" : { "next" : "mother_name",
+        "question_text" : "Select the sex of the child:\n 1. Male\n 2. Female"
+    },
+        "model" : "ussd.question",
+        "pk" : "child_sex"
+    },
+    { "fields" : { "next" : "child_sex",
+        "question_text" : "Enter date of birth:\n1. Today\n2. Yesterday\nOther (Enter manually in the format ddmmyyyy) "
+    },
+        "model" : "ussd.question",
+        "pk" : "birth_date"
+    },
+    { "fields" : { "next" : "birth_date",
+        "question_text" : "Enter child's other name(s):"
+    },
+        "model" : "ussd.question",
+        "pk" : "other_name"
+    },
+    { "fields" : { "next" : "death_thank_you",
+        "question_text" : "Enter Pin to comfirm or 0 to cancel"
+    },
+        "model" : "ussd.question",
+        "pk" : "death_summary"
+    },
+    { "fields" : { "next" : "death_summary",
+        "question_text" : "Capacity:\n1.Relative present at Death\n2.Other Relative\n3.Person present at death\n4.House occupant at location\n5.Person with knowledge\n6. Person finding  body"
+    },
+        "model" : "ussd.question",
+        "pk" : "death_reporter_capacity"
+    },
+    { "fields" : { "next" : "death_reporter_capacity",
+        "question_text" : "Declarant's Phone Number:"
+    },
+        "model" : "ussd.question",
+        "pk" : "death_reporter_phone"
+    },
+    { "fields" : { "next" : "death_reporter_phone",
+        "question_text" : "Names of Declarant:"
+    },
+        "model" : "ussd.question",
+        "pk" : "death_reporter"
+    },
+    { "fields" : { "next" : "death_reporter",
+        "question_text" : "Date of death (ddmmyyyy):"
+    },
+        "model" : "ussd.question",
+        "pk" : "death_date"
+    },
+    { "fields" : { "next" : "death_date",
+        "question_text" : "Sex of the deceased:1. Male 2. Female"
+    },
+        "model" : "ussd.question",
+        "pk" : "death_sex"
+    },
+    { "fields" : { "next" : "death_sex",
+        "question_text" : "Age of the deceased:"
+    },
+        "model" : "ussd.question",
+        "pk" : "death_age"
+    },
+    { "fields" : { "next" : "other_name",
+        "question_text" : "Enter Child's first name :"
+    },
+        "model" : "ussd.question",
+        "pk" : "child_first_name"
+    },
+    { "fields" : { "next" : "death_age",
+        "question_text" : "Enter names of the Deceased:"
+    },
+        "model" : "ussd.question",
+        "pk" : "death_name"
+    },
+    { "fields" : { "next" : "thank_msg",
+        "question_text" : "Enter Pin :"
+    },
+        "model" : "ussd.question",
+        "pk" : "edit_user"
+    },
+    { "fields" : { "next" : null,
+        "question_text" : "Thank you"
+    },
+        "model" : "ussd.question",
+        "pk" : "e_thank_you"
+    },
+    { "fields" : { "next" : "e_thank_you",
+        "question_text" : "Enter  PIN to confirm or \"0\" to cancel"
+    },
+        "model" : "ussd.question",
+        "pk" : "e_confirm"
+    },
+    { "fields" : { "next" : "e_confirm",
+        "question_text" : "Enter User's parish or ward:"
+    },
+        "model" : "ussd.question",
+        "pk" : "e_parish_or_ward"
+    },
+    { "fields" : { "next" : "e_parish_or_ward",
+        "question_text" : "Enter user's phone number:"
+    },
+        "model" : "ussd.question",
+        "pk" : "e_phone"
+    },
+    { "fields" : { "next" : "e_phone",
+        "question_text" : "Enter User's Date of Birth (ddmmyyyy):"
+    },
+        "model" : "ussd.question",
+        "pk" : "e_birth_date"
+    },
+    { "fields" : { "next" : "e_birth_date",
+        "question_text" : "Enter User's sex:\n1. Male\n2. Female"
+    },
+        "model" : "ussd.question",
+        "pk" : "e_gender"
+    },
+    { "fields" : { "next" : "e_gender",
+        "question_text" : "Enter User's other names:"
+    },
+        "model" : "ussd.question",
+        "pk" : "e_other_name"
+    },
+    { "fields" : { "next" : "e_other_name",
+        "question_text" : "Enter User's Surname:"
+    },
+        "model" : "ussd.question",
+        "pk" : "create_user"
+    },
+    { "fields" : { "field" : 5 },
+        "model" : "ussd.field",
+        "pk" : "birth_summary"
+    },
+    { "fields" : { "field" : 6 },
+        "model" : "ussd.field",
+        "pk" : "father_nationality"
+    },
+    { "fields" : { "field" : 7 },
+        "model" : "ussd.field",
+        "pk" : "father_name"
+    },
+    { "fields" : { "field" : 8 },
+        "model" : "ussd.field",
+        "pk" : "mother_nationality"
+    },
+    { "fields" : { "field" : 9 },
+        "model" : "ussd.field",
+        "pk" : "mother_name"
+    },
+    { "fields" : { "field" : 10 },
+        "model" : "ussd.field",
+        "pk" : "child_sex"
+    },
+    { "fields" : { "field" : 11 },
+        "model" : "ussd.field",
+        "pk" : "birth_date"
+    },
+    { "fields" : { "field" : 12 },
+        "model" : "ussd.field",
+        "pk" : "other_name"
+    },
+    { "fields" : { "field" : 13 },
+        "model" : "ussd.field",
+        "pk" : "death_summary"
+    },
+    { "fields" : { "field" : 14 },
+        "model" : "ussd.field",
+        "pk" : "death_reporter_capacity"
+    },
+    { "fields" : { "field" : 15 },
+        "model" : "ussd.field",
+        "pk" : "death_reporter_phone"
+    },
+    { "fields" : { "field" : 16 },
+        "model" : "ussd.field",
+        "pk" : "death_reporter"
+    },
+    { "fields" : { "field" : 17 },
+        "model" : "ussd.field",
+        "pk" : "death_date"
+    },
+    { "fields" : { "field" : 18 },
+        "model" : "ussd.field",
+        "pk" : "death_sex"
+    },
+    { "fields" : { "field" : 19 },
+        "model" : "ussd.field",
+        "pk" : "death_age"
+    },
+    { "fields" : { "field" : 20 },
+        "model" : "ussd.field",
+        "pk" : "child_first_name"
+    },
+    { "fields" : { "field" : 21 },
+        "model" : "ussd.field",
+        "pk" : "death_name"
+    },
+    { "fields" : { "field" : 22 },
+        "model" : "ussd.field",
+        "pk" : "edit_user"
+    },
+    { "fields" : { "field" : 23 },
+        "model" : "ussd.field",
+        "pk" : "e_thank_you"
+    },
+    { "fields" : { "field" : 24 },
+        "model" : "ussd.field",
+        "pk" : "e_confirm"
+    },
+    { "fields" : { "field" : 25 },
+        "model" : "ussd.field",
+        "pk" : "e_parish_or_ward"
+    },
+    { "fields" : { "field" : 26 },
+        "model" : "ussd.field",
+        "pk" : "e_phone"
+    },
+    { "fields" : { "field" : 27 },
+        "model" : "ussd.field",
+        "pk" : "e_birth_date"
+    },
+    { "fields" : { "field" : 28 },
+        "model" : "ussd.field",
+        "pk" : "e_gender"
+    },
+    { "fields" : { "field" : 29 },
+        "model" : "ussd.field",
+        "pk" : "e_other_name"
+    },
+    { "fields" : { "field" : 30 },
+        "model" : "ussd.field",
+        "pk" : "create_user"
+    },
+    { "fields" : { "terminal" : true,
+        "text" : "Thank you for recording a new birth! You will  receive a confirmation message with the summary of the record and the registration number"
+    },
+        "model" : "ussd.stubscreen",
+        "pk" : "thank_msg"
+    },
+    { "fields" : { "terminal" : true,
+        "text" : "Thank you for recording a new death. Please inform relatives to present themselves at the Registrars office to complete the process"
+    },
+        "model" : "ussd.stubscreen",
+        "pk" : "death_thank_you"
+    },
+    { "fields" : { "terminal" : false,
+        "text" : "Your session has ended, thank you."
+    },
+        "model" : "ussd.stubscreen",
+        "pk" : "resume"
+    },
+    { "fields" : { "active" : true,
+        "command_prefix" : "+",
+        "created" : "2012-09-26 07:31:02",
+        "description" : "",
+        "keyword" : "test",
+        "keyword_prefix" : null,
+        "modified" : "2012-09-26 07:31:02",
+        "name" : "test xform",
+        "owner" : 767,
+        "response" : "thanks for testing",
+        "restrict_message" : null,
+        "restrict_to" : [  ],
+        "separator" : null,
+        "site" : 1
+    },
+        "model" : "rapidsms_xforms.xform",
+        "pk" : 1
+    },
+    { "fields" : { "command" : "e15",
+        "field_type" : "text",
+        "order" : 0,
+        "question" : "Enter Child's first name :",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 20
+    },
+    { "fields" : { "command" : "e",
+        "field_type" : "int",
+        "order" : 1,
+        "question" : "Enter Pin to comfirm or 0 to cancel",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 5
+    },
+    { "fields" : { "command" : "e1",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Select father's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\nOthers (Type in the country manually)",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 6
+    },
+    { "fields" : { "command" : "e2",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter father's names:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 7
+    },
+    { "fields" : { "command" : "e3",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Select mother's nationality:\n1. Uganda\n2. Kenya\n3. Tanzania\n4. Rwanda\nOthers (Type in the country manually)",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 8
+    },
+    { "fields" : { "command" : "e4",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter mother's names:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 9
+    },
+    { "fields" : { "command" : "e5",
+        "field_type" : "int",
+        "order" : 1,
+        "question" : "Select the sex of the child:\n 1. Male\n 2. Female",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 10
+    },
+    { "fields" : { "command" : "e6",
+        "field_type" : "int",
+        "order" : 1,
+        "question" : "Enter date of birth:\n1. Today\n2. Yesterday\nOther (Enter manually in the format ddmmyyyy) ",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 11
+    },
+    { "fields" : { "command" : "e7",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter child's other name(s):",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 12
+    },
+    { "fields" : { "command" : "e8",
+        "field_type" : "int",
+        "order" : 1,
+        "question" : "Enter Pin to comfirm or 0 to cancel",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 13
+    },
+    { "fields" : { "command" : "e9",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Capacity:\n1.Relative present at Death\n2.Other Relative\n3.Person present at death\n4.House occupant at location\n5.Person with knowledge\n6. Person finding  body",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 14
+    },
+    { "fields" : { "command" : "e10",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Declarant's Phone Number:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 15
+    },
+    { "fields" : { "command" : "e11",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Names of Declarant:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 16
+    },
+    { "fields" : { "command" : "e12",
+        "field_type" : "int",
+        "order" : 1,
+        "question" : "Date of death (ddmmyyyy):",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 17
+    },
+    { "fields" : { "command" : "e13",
+        "field_type" : "int",
+        "order" : 1,
+        "question" : "Sex of the deceased:\n1. Male\n2. Female",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 18
+    },
+    { "fields" : { "command" : "e14",
+        "field_type" : "int",
+        "order" : 1,
+        "question" : "Age of the deceased:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 19
+    },
+    { "fields" : { "command" : "e16",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter names of the Deceased:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 21
+    },
+    { "fields" : { "command" : "u",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter Pin :",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 22
+    },
+    { "fields" : { "command" : "u1",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Thank you",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 23
+    },
+    { "fields" : { "command" : "u2",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter  PIN to confirm or \"0\" to cancel",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 24
+    },
+    { "fields" : { "command" : "u3",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter User's parish or ward:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 25
+    },
+    { "fields" : { "command" : "u4",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter user's phone number:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 26
+    },
+    { "fields" : { "command" : "u5",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter User's Date of Birth (ddmmyyyy):",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 27
+    },
+    { "fields" : { "command" : "u6",
+        "field_type" : "int",
+        "order" : 1,
+        "question" : "Enter User's sex:\n1. Male\n2. Female",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 28
+    },
+    { "fields" : { "command" : "u7",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter User's other names:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 29
+    },
+    { "fields" : { "command" : "u8",
+        "field_type" : "text",
+        "order" : 1,
+        "question" : "Enter User's Surname:",
+        "xform" : 1
+    },
+        "model" : "rapidsms_xforms.xformfield",
+        "pk" : 30
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:03",
+        "datatype" : "int",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:03",
+        "name" : "birth_date",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e6",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 11
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:02",
+        "datatype" : "int",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:02",
+        "name" : "birth_summary",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 5
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:05",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:05",
+        "name" : "child_first_name",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e15",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 20
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:03",
+        "datatype" : "int",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:03",
+        "name" : "child_sex",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e5",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 10
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:07",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:07",
+        "name" : "create_user",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u8",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 30
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:05",
+        "datatype" : "int",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:05",
+        "name" : "death_age",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e14",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 19
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:05",
+        "datatype" : "int",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:05",
+        "name" : "death_date",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e12",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 17
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:05",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:05",
+        "name" : "death_name",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e16",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 21
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:05",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:05",
+        "name" : "death_reporter",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e11",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 16
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:04",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:04",
+        "name" : "death_reporter_capacity",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e9",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 14
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:04",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:04",
+        "name" : "death_reporter_phone",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e10",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 15
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:05",
+        "datatype" : "int",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:05",
+        "name" : "death_sex",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e13",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 18
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:04",
+        "datatype" : "int",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:04",
+        "name" : "death_summary",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e8",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 13
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:06",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:06",
+        "name" : "e_birth_date",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u5",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 27
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:06",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:06",
+        "name" : "e_confirm",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u2",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 24
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:06",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:06",
+        "name" : "edit_user",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 22
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:07",
+        "datatype" : "int",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:07",
+        "name" : "e_gender",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u6",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 28
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:07",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:07",
+        "name" : "e_other_name",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u7",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 29
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:06",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:06",
+        "name" : "e_parish_or_ward",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u3",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 25
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:06",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:06",
+        "name" : "e_phone",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u4",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 26
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:06",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:06",
+        "name" : "e_thank_you",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_u1",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 23
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:03",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:03",
+        "name" : "father_name",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e2",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 7
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:02",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:02",
+        "name" : "father_nationality",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e1",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 6
+    },
+    { "fields" : { "created" : "2012-09-26 07:28:42",
+        "datatype" : "object",
+        "description" : "The location associated with a particular contact",
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:28:42",
+        "name" : "Location",
+        "required" : false,
+        "site" : 1,
+        "slug" : "contact_location",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 4
+    },
+    { "fields" : { "created" : "2012-09-26 07:28:42",
+        "datatype" : "object",
+        "description" : "A response value for a Poll with expected location-based responses",
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:28:42",
+        "name" : "Location",
+        "required" : false,
+        "site" : 1,
+        "slug" : "poll_location_value",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 3
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:03",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:03",
+        "name" : "mother_name",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e4",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 9
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:03",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:03",
+        "name" : "mother_nationality",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e3",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 8
+    },
+    { "fields" : { "created" : "2012-09-26 07:28:42",
+        "datatype" : "float",
+        "description" : "A response value for a Poll with expected numeric responses",
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:28:42",
+        "name" : "Number",
+        "required" : false,
+        "site" : 1,
+        "slug" : "poll_number_value",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 1
+    },
+    { "fields" : { "created" : "2012-09-26 07:31:04",
+        "datatype" : "text",
+        "description" : null,
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:31:04",
+        "name" : "other_name",
+        "required" : false,
+        "site" : 1,
+        "slug" : "test_e7",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 12
+    },
+    { "fields" : { "created" : "2012-09-26 07:28:42",
+        "datatype" : "text",
+        "description" : "A response value for a Poll with expected text responses",
+        "enum_group" : null,
+        "modified" : "2012-09-26 07:28:42",
+        "name" : "Text",
+        "required" : false,
+        "site" : 1,
+        "slug" : "poll_text_value",
+        "type" : null
+    },
+        "model" : "eav.attribute",
+        "pk" : 2
+    },
+    { "fields" : { "date_joined" : "2012-09-26 07:28:38",
+        "email" : "kenneth@kudu.ug",
+        "first_name" : "",
+        "groups" : [  ],
+        "is_active" : true,
+        "is_staff" : true,
+        "is_superuser" : true,
+        "last_login" : "2012-09-26 07:28:38",
+        "last_name" : "",
+        "password" : "sha1$ffb52$820bc664c1377a7350d600e03b4d6f35ff46c552",
+        "user_permissions" : [  ],
+        "username" : "kenneth"
+    },
+        "model" : "auth.user",
+        "pk" : 767
     }
 ]
