@@ -274,17 +274,6 @@
         "model" : "ussd.screen",
         "pk" : "user_other_name"
     },
-    { "fields" : { "label" : "User Management",
-        "level" : 1,
-        "lft" : 4,
-        "order" : 4,
-        "parent" : "ussd_root",
-        "rght" : 9,
-        "tree_id" : 1
-    },
-        "model" : "ussd.screen",
-        "pk" : "user_management"
-    },
     { "fields" : { "label" : "Notify Birth",
         "level" : 1,
         "lft" : 10,
@@ -317,28 +306,6 @@
     },
         "model" : "ussd.screen",
         "pk" : "user_first_name"
-    },
-    { "fields" : { "label" : "Root Menu",
-        "level" : 0,
-        "lft" : 1,
-        "order" : 1,
-        "parent" : null,
-        "rght" : 16,
-        "tree_id" : 1
-    },
-        "model" : "ussd.screen",
-        "pk" : "ussd_root"
-    },
-    { "fields" : { "label" : "Resume Previous",
-        "level" : 1,
-        "lft" : 14,
-        "order" : 5,
-        "parent" : "ussd_root",
-        "rght" : 15,
-        "tree_id" : 1
-    },
-        "model" : "ussd.screen",
-        "pk" : "resume"
     },
     { "fields" : { "label" : "pin End",
         "level" : 0,
@@ -384,6 +351,50 @@
         "model" : "ussd.screen",
         "pk" : "modify_pin"
     },
+    { "fields" : { "label" : "User Management",
+        "level" : 1,
+        "lft" : 4,
+        "order" : 5,
+        "parent" : "ussd_root",
+        "rght" : 9,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "user_management"
+    },
+    { "fields" : { "label" : "Resume Previous",
+        "level" : 1,
+        "lft" : 14,
+        "order" : 6,
+        "parent" : "ussd_root",
+        "rght" : 15,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "resume"
+    },
+    { "fields" : { "label" : "Root Menu",
+        "level" : 0,
+        "lft" : 1,
+        "order" : 1,
+        "parent" : null,
+        "rght" : 18,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "ussd_root"
+    },
+    { "fields" : { "label" : "Validation",
+        "level" : 1,
+        "lft" : 16,
+        "order" : 4,
+        "parent" : "ussd_root",
+        "rght" : 17,
+        "tree_id" : 1
+    },
+        "model" : "ussd.screen",
+        "pk" : "validation"
+    },
     { "fields" : {  },
         "model" : "ussd.menu",
         "pk" : "ussd_root"
@@ -395,6 +406,10 @@
     { "fields" : {  },
         "model" : "ussd.menu",
         "pk" : "user_management"
+    },
+    { "fields" : {  },
+        "model" : "ussd.menu",
+        "pk" : "validation"
     },
     { "fields" : { "next" : "thank_msg",
         "question_text" : "Enter Pin to confirm or \"0\" to cancel"
