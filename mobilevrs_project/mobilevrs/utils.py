@@ -13,7 +13,7 @@ def dictinvert(dict):
 
 
 
-def get_summary_dict(session, ussd_menu_dict, action):
+def get_summary_dict(session, ussd_menu_dict):
     results = ussd_menu_dict
     pin = None
     keys=dictinvert(ussd_menu_dict)
@@ -21,12 +21,10 @@ def get_summary_dict(session, ussd_menu_dict, action):
         if nav.screen.downcast().slug in settings.PIN_SLUGS:
             pin = nav.response
         else:
-            if keys.get(nav.screen.downcast().slug):
-                results[keys.get(nav.screen.downcast().slug)] = nav.response
+            results[keys.get(nav.screen.downcast().slug)] = nav.response
     results['SESSION'] = session.transaction_id
     results['MSISDN'] = session.connection.identity
     results['PIN'] = pin
-    results['ACTION'] = action
     return results
 
 def get_session_data_turples(session, ussd_menu_dict, action):

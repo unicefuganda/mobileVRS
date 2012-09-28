@@ -199,14 +199,6 @@ TRANSLATION_DICT={
     'death_reporter_capacity':'declarant capacity:',
     'death_name':'deceased name:',
     'death_date': 'Death date',
-
-    #User Management
-    'e_parish_or_ward':'Parish or Ward',
-    'e_phone' : 'Phone',
-    'e_birth_date':'Date of Birth',
-    'e_gender':'Sex',
-    'e_other_name':'Other Names',
-    'create_user':'Surname'
 }
 
 try:

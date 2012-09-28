@@ -7,53 +7,10 @@ import urllib
 from ussd.models import *
 from django.conf import settings
 from mobilevrs.tasks import forward_to_utl
-from mobilevrs.utils import get_summary
 from django.core.cache import cache
 import logging
 
 logger = logging.getLogger(__name__)
-
-def advance_progress(session,input):
-    """
-        Navigate down the tree, based on the number the user has input.
-        """
-    #    import ipdb;ipdb.set_trace()
-    if input.rsplit("_")[0] == getattr(settings,"BACK_KEY","#"):
-        return StubScreen(text=session.back(), terminal=False)
-    screen = session.last_screen()
-    if not screen:
-        screen = session.get_initial_screen()
-        session.navigations.create(session=session, screen=screen, text=str(screen.downcast()))
-        return screen.downcast()
-
-    nav = session.navigations.latest('date')
-    nav.response = input
-    nav.save()
-
-    #check for back navigation
-
-    try:
-        ussd_pre_transition.send(sender=session, screen=screen, input=input.rsplit("_")[0], session=session)
-        #handle equatel
-        next = screen.downcast().accept_input(input.rsplit("_")[0], session)
-        if not next:
-            # this is actually an improperly configured USSD menu, but
-            # we're relaxing constraints and not blowing up in the
-            # case of a leaf node without any successor screen
-            next = StubScreen()
-        session.navigations.create(session=session, screen=next, text=str(next.downcast()))
-        if next.downcast().is_terminal():
-            session.complete()
-        return next.downcast()
-    except BackNavigation:
-        return StubScreen(text=session.back(), terminal=False)
-    except TransitionException as e:
-        next = e.screen
-        session.navigations.create(session=session, screen=next, text=str(next.downcast()))
-        if next.downcast().is_terminal():
-            session.complete()
-        return next.downcast()
-
 
 def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
     form = None
@@ -73,7 +30,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
                 cache.set(session.connection.identity, sess, 1800)
 
         #submit input and advance to the next screen
-        response_screen = advance_progress(session, request_string)
+        response_screen = session.advance_progress(request_string)
         if isinstance(response_screen,Menu):
             last_nav = Navigation.objects.order_by('-date').filter(session=session)[0]
             logger.info('We asked: %s' % last_nav.screen.downcast())
@@ -82,12 +39,12 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
             logger.info('We asked: %s' % question)
 
         #if we have already progressed to the last screen, the user must have put in a pin or cancelled, lets forward to UTL
-        if response_screen.slug == 'thank_msg' or response_screen.slug == 'death_thank_you':
+        if response_screen.slug == 'thank_msg' or response_screen.slug == 'death_thank_you' or response_screen.slug == 'e_thank_you' or response_screen.slug == 'pin_confirm':
             logger.info('Preparing to submit this data...')
             response = forward_to_utl(session)
             if request_string == '0' or response.getcode() != 200:
                 resp = "The information was not recorded. Please start again"
-                logging.info('Sending response to Yo " %s "'%render_to_string(output_template,{
+                logger.info('Sending response to Yo " %s "'%render_to_string(output_template,{
                     'response_content':urllib.quote(str(response_screen)),
                     'action':'end',
                     }))
@@ -98,11 +55,6 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
 
         #is this a terminal screen or not?
         action = 'end' if response_screen.is_terminal() else 'request'
-
-        #Pre-pend a summary to the second last question
-        if response_screen.slug in ["birth_summary","death_summary","e_confirm"]:
-#            response_screen = "Summary %s %s " % (get_summary(session), str(response_screen))
-            logger.info('Returning Summary Screen: %s' % response_screen)
 
         #Determine if a resume option has been selected and serve the last dropped session    
         label = response_screen if type(response_screen) == unicode or type(response_screen) == str else response_screen.label
@@ -121,7 +73,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
         #TODO: handle edit function
         #TODO: handle user management
         #TODO: handle skips
-        logging.info('Sending response to Yo " %s "'%render_to_string(output_template,{
+        logger.info('Sending response to Yo " %s "'%render_to_string(output_template,{
             'response_content':urllib.quote(str(response_screen)),
             'action':action,
             }))

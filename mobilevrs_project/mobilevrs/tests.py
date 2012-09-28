@@ -6,6 +6,9 @@ import urllib
 import datetime
 from rapidsms_xforms.models import XFormField, XForm
 from ussd.models import Field, Menu, StubScreen
+import logging
+
+logger = logging.getLogger(__name__)
 
 class ViewTest(TestCase):
 
@@ -19,7 +22,7 @@ class ViewTest(TestCase):
         user_management = Menu.objects.get(slug="user_management")
         xform = XForm.objects.get(keyword="test")
         stub = StubScreen(slug="stopper")
-        
+
     def sendRequest(self, transactionId = None, transactionTime = None, msisdn = None, ussdServiceCode = None, ussdRequestString = None, response = None ):
         client = Client()
         transactionId = self.transactionId if transactionId == None else transactionId
@@ -28,7 +31,7 @@ class ViewTest(TestCase):
         ussdServiceCode = self.ussdServiceCode if ussdServiceCode == None else ussdServiceCode
         ussdRequestString = self.ussdRequestString if ussdRequestString == None else ussdRequestString
         response = self.response if response == None else response
-        
+
         return client.post('/ussd/', {'transactionId': transactionId,\
                                     'transactionTime': transactionTime,\
                                     'msisdn': msisdn,\
@@ -36,12 +39,12 @@ class ViewTest(TestCase):
                                     'ussdRequestString': ussdRequestString,\
                                     'response': response
                                     })
-        
+
     def testUSSDRequest(self):
         response = self.sendRequest()
         self.assertEquals(response.status_code, 200)
         self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
-        
+
     def testUTLDataPost(self):
         data_structure = settings.UTL_BIRTH_DICT
         keys = dict([[v,k] for k,v in data_structure.items()])
@@ -62,8 +65,9 @@ class ViewTest(TestCase):
         }
         result = urllib2.urlopen('http://www.mobilevrs.co.ug/ussd/notify.php?%s' % urllib.urlencode(post_data))
         self.assertEquals(result.getcode(), 200)
-        
+
     def testBirthNotify(self):
+        logger.info("\n\n Testing Birth Notify....\n\n")
         response = self.sendRequest()
         self.assertEquals(response.status_code, 200)
         self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
@@ -149,6 +153,7 @@ class ViewTest(TestCase):
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Thank you for recording a new birth! You will  receive a confirmation message with the summary of the record and the registration number&action=end')
 
     def testBirthNotifyResume(self):
+        logger.info("\n\nTesting Birth Resume Notify \n\n")
         response = self.sendRequest()
         self.assertEquals(response.status_code, 200)
         self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
@@ -186,6 +191,7 @@ class ViewTest(TestCase):
         self.assertEquals(urllib2.unquote(response.content), "responseString=Enter child's other name(s):&action=request")
 
     def testDeathNotify(self):
+        logger.info("\n\nTesting Death Notify\n\n")
         response = self.sendRequest(transactionId = '123345',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -267,8 +273,9 @@ class ViewTest(TestCase):
                                     response = True\
                                     )
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Thank you for recording a new death. Please inform relatives to present themselves at the Registrars office to complete the process&action=end')
-        
+
     def testResumeDeathNotify(self):
+        logger.info("\n\nTesting Death Notify Resume\n\n")
         response = self.sendRequest(transactionId = '123346',\
                                     transactionTime = self.transactionTime, \
                                     msisdn = self.msisdn, \
@@ -312,6 +319,7 @@ class ViewTest(TestCase):
         self.assertEquals(urllib2.unquote(response.content), "responseString=Age of the deceased:&action=request")
 
     def testResumeDeathNotifyAccuracy(self):
+        logger.info("\n\nTesting Death Notify Accuraccy\n\n")
         response = self.sendRequest(transactionId = '123346',\
             transactionTime = self.transactionTime,\
             msisdn = self.msisdn,\
@@ -400,7 +408,7 @@ class ViewTest(TestCase):
             ussdRequestString = '1',\
             response = False\
         )
-#        self.assertEquals(urllib2.unquote(response.content), "responseString=Summary declarant capacity: 1 deceased name: Mr. Dead deacesed age: 45 Deceased Sex: 1 Death date 12122011 declarant name: Kenneth declarant phone: 63773737737  Death Summary: &action=request")
+        self.assertEquals(urllib2.unquote(response.content), 'responseString=Enter Pin to confirm or "0" to cancel&action=request')
         response = self.sendRequest(transactionId = '123347',\
             transactionTime = self.transactionTime,\
             msisdn = self.msisdn,\
@@ -411,6 +419,8 @@ class ViewTest(TestCase):
         self.assertEquals(urllib2.unquote(response.content), 'responseString=Thank you for recording a new death. Please inform relatives to present themselves at the Registrars office to complete the process&action=end')
 
     def testUserManagementUserCreation(self):
+        logger.info("\n\nTesting User Management User Creation\n\n")
+        self.transactionId = '50012'
         response = self.sendRequest()
         self.assertEquals(response.status_code, 200)
         self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
@@ -482,7 +492,54 @@ class ViewTest(TestCase):
             transactionTime = self.transactionTime,\
             msisdn = self.msisdn,\
             ussdServiceCode = self.msisdn,\
-            ussdRequestString = '1234',\
+            ussdRequestString = '9045',\
             response = True\
         )
-        self.assertEquals(urllib2.unquote(response.content), "responseString=Thank you&action=end")
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Thank you creating a new user. You will receive a confirmation message.&action=end")
+
+    def testModifyPin(self):
+        logger.info("\n\nTesting User management modify Pin\n\n")
+        self.transactionId = '534545'
+        response = self.sendRequest()
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Notify Birth\n2. Notify Death\n3. Edit Record\n4. User Management\n5. Resume Previous&action=request")
+        response = self.sendRequest(transactionId = self.transactionId,\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '4',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=1. Create User\n2. Modify Pin\n#. Back&action=request")
+        response = self.sendRequest(transactionId = self.transactionId,\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '2',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Enter old PIN:&action=request")
+        response = self.sendRequest(transactionId = self.transactionId,\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '9045',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Enter new PIN:&action=request")
+        response = self.sendRequest(transactionId = self.transactionId,\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '2325',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=Re-enter new PIN:&action=request")
+        response = self.sendRequest(transactionId = self.transactionId,\
+            transactionTime = self.transactionTime,\
+            msisdn = self.msisdn,\
+            ussdServiceCode = self.msisdn,\
+            ussdRequestString = '2325',\
+            response = True\
+        )
+        self.assertEquals(urllib2.unquote(response.content), "responseString=You will receive a message to confirm the change of your PIN. Protect your PIN. Keep it secret. Do not share it.&action=end")
