@@ -53,3 +53,15 @@ def get_summary(session):
         if val:
             summary += "%s %s " % (val, nav.response)
     return summary
+
+
+def get_dictionary_for_session(session):
+    def _all_match(session, positions):
+        for position in range(len(positions)):
+            if not session.navigations.order_by('date')[position].response== str(positions[position]):
+                return False
+        return True
+    for dict in [getattr(settings,d) for d in dir(settings) if d.startswith('UTL_')]:
+        if _all_match(session,dict['positions']):
+            return dict
+    raise Exception('Dictionary for this session cannot be found in session')
