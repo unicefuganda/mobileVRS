@@ -39,7 +39,7 @@ def ussd_menu(req, input_form=YoForm, output_template='ussd/yo.txt'):
             logger.info('We asked: %s' % question)
 
         #if we have already progressed to the last screen, the user must have put in a pin or cancelled, lets forward to UTL
-        if response_screen.slug == 'thank_msg' or response_screen.slug == 'death_thank_you' or response_screen.slug == 'e_thank_you' or response_screen.slug == 'pin_confirm':
+        if response_screen.slug in settings.END_SCREENS:
             logger.info('Preparing to submit this data...')
             response = forward_to_utl(session)
             if request_string == '0' or response.getcode() != 200:
