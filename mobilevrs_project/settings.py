@@ -177,30 +177,6 @@ CACHES = {
 
 INITIAL_USSD_SCREEN='ussd_root'
 
-# I believe this dictionary belongs in the main settings because it keeps changing when more menus are added and the changes affects all enviroments
-
-TRANSLATION_DICT={
-    #Birth vars mapping
-    'father_nationality':'father nationality:',
-    'mother_nationality':'mother nationality:',
-    'father_name':'father name:',
-    'mother_name':'mother name:',
-    'child_sex':'child sex',
-    'birth_date':'date of birth:',
-    'child_first_name':'child first name:',
-    'other_name':'child other name:',
-
-    #Death vars mapping
-    'death_sex':'Deceased Sex:',
-    'death_age':'deacesed age:',
-    'death_reporter':'declarant name:',
-    'death_birth':'date of death',
-    'death_reporter_phone':'declarant phone:',
-    'death_reporter_capacity':'declarant capacity:',
-    'death_name':'deceased name:',
-    'death_date': 'Death date',
-}
-
 try:
     if os.environ.has_key('LOCAL_SETTINGS'):
         # the LOCAL_SETTINGS environment variable is used by the build server
